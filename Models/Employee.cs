@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EmployeeManagementSystemm.Models
@@ -15,6 +16,8 @@ namespace EmployeeManagementSystemm.Models
         [Required]
         [MaxLength(13)]
         public string? EmployeePhoneNumber { get; set; }
+        [Required]
+        [EmailAddress]
         public string? Email {get; set; }
         [Required]
         [MaxLength(10)]
@@ -27,8 +30,6 @@ namespace EmployeeManagementSystemm.Models
         [Required]
         [MaxLength(100)]
         public string? Address { get; set; }
-        [Required]
-        public int DepartmentId { get; set; }
         [Required]
         [MaxLength(40)]
         public string? DepartmentName { get; set; }
