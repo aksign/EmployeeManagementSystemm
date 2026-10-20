@@ -1,6 +1,7 @@
 ﻿using EmployeeManagementSystemm.Data;
 using EmployeeManagementSystemm.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeManagementSystemm.Controllers
 {
@@ -28,10 +29,23 @@ namespace EmployeeManagementSystemm.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Create(Employee e)
+        [HttpPost]
+        public async Task<IActionResult> Create(Employee e)
         {
+            if (await _context.Employees
+                .AnyAsync(x => x.EmployeeCode == e.EmployeeCode))
+            {
+                ModelState.AddModelError(
+                    nameof(e.EmployeeCode),
+                    "Employee Code already exists."
+                );
+
+                return View(e);
+            }
+
             _context.Employees.Add(e);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
+
             return RedirectToAction("Index");
         }
         public IActionResult Edit(int emp)
