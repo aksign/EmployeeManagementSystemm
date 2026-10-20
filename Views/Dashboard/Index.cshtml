@@ -1,0 +1,127 @@
+﻿@model EmployeeManagementSystemm.Models.DashboardViewModel
+
+@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="container-fluid mt-4">
+
+    <h2 class="mb-2">Dashboard</h2>
+    <p class="text-muted mb-4">
+        Welcome to Employee Management System
+    </p>
+
+    <!-- Summary Cards -->
+    <div class="row">
+
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title text-muted">
+                        Total Employees
+                    </h5>
+
+                    <h2 class="fw-bold">
+                        @Model.TotalEmployees
+                    </h2>
+
+                    <a asp-controller="Employee"
+                       asp-action="Index"
+                       class="btn btn-primary btn-sm mt-2">
+                        View Employees
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title text-muted">
+                        Total Departments
+                    </h5>
+
+                    <h2 class="fw-bold">
+                        @Model.TotalDepartments
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4 mb-3">
+            <div class="card shadow-sm h-100">
+                <div class="card-body">
+                    <h5 class="card-title text-muted">
+                        Total Salary
+                    </h5>
+
+                    <h2 class="fw-bold">
+                        ₹@Model.TotalSalary.ToString("N2")
+                    </h2>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Recent Employees -->
+    <div class="card shadow-sm mt-4">
+
+        <div class="card-header bg-white py-3">
+            <h5 class="mb-0">Recent Employees</h5>
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive">
+
+                <table class="table table-hover table-bordered align-middle">
+
+                    <thead class="table-dark">
+                        <tr>
+                            <th>Employee Code</th>
+                            <th>Name</th>
+                            <th>Phone</th>
+                            <th>Email</th>
+                            <th>Department</th>
+                            <th>Salary</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @if (Model.RecentEmployees.Any())
+                        {
+                            @foreach (var emp in Model.RecentEmployees)
+                            {
+                                <tr>
+                                    <td>@emp.EmployeeCode</td>
+                                    <td>@emp.EmployeeName</td>
+                                    <td>@emp.EmployeePhoneNumber</td>
+                                    <td>@emp.Email</td>
+                                    <td>@emp.DepartmentName</td>
+                                    <td>₹@emp.Salary.ToString("N2")</td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="6" class="text-center">
+                                    No employees found.
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+
+            </div>
+
+            <a asp-controller="Employee"
+               asp-action="Index"
+               class="btn btn-outline-primary mt-2">
+                View All Employees
+            </a>
+        </div>
+    </div>
+
+</div>

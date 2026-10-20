@@ -1,0 +1,79 @@
+﻿@model IEnumerable<EmployeeManagementSystemm.Models.Employee>
+
+<div class="container mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>Employee List</h2>
+
+        <a asp-action="Create" class="btn btn-success">
+            Add Employee
+        </a>
+    </div>
+
+    <form method="get" class="row mb-3">
+        <div class="col-md-4">
+            <input type="text"
+                   id="searchBox"
+                   name="search"
+                   value="@Context.Request.Query["search"]"
+                   class="form-control"
+                   placeholder="Search Employee..." />
+
+                   <script>
+                       window.addEventListner("load",function() {
+                    document.getElementById("searchBox").focus();
+                       });
+                   </script>
+        </div>
+
+        <div class="col-md-2">
+            <button type="submit" class="btn btn-primary">
+                Search
+            </button>
+        </div>
+    </form>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+
+            <thead class="table-dark">
+                <tr>
+                    <th>EmployeeCode</th>
+                    <th>EmployeeName</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Gender</th>
+                    <th>DOB</th>
+                    <th>Salary</th>
+                    <th>DepartmentName</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.EmployeeCode</td>
+                        <td>@item.EmployeeName</td>
+                        <td>@item.EmployeePhoneNumber</td>
+                        <td>@item.Email</td>
+                        <td>@item.Gender</td>
+                        <td>@item.DateOfBirth.ToString("dd-MM-yyyy")</td>
+                        <td>@item.Salary</td>
+                        <td>@item.DepartmentName</td>
+                        <td>
+                            <a asp-action="Edit" asp-route-emp="@item.EmployeeId" class="btn btn-warning btn-sm">Edit</a>
+
+                            <a asp-action="Details" asp-route-id="@item.EmployeeId" class="btn btn-info btn-sm text-white">Details</a>
+
+                            <a asp-action="Delete" asp-route-id="@item.EmployeeId" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+
+</div>

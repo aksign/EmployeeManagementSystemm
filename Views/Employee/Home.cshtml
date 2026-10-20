@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="container mt-5">
+
+    <div class="text-center">
+        <h1 class="display-5 fw-bold text-primary">
+            Welcome to Employee Management System
+        </h1>
+
+        <p class="lead mt-3">
+            This application is developed using
+            <strong>ASP.NET Core MVC</strong>,
+            <strong>Entity Framework Core</strong>,
+            and <strong>SQL Server</strong>.
+        </p>
+    </div>
+
+    <div class="card shadow mt-5">
+        <div class="card-header bg-dark text-white">
+            <h4 class="mb-0">Features</h4>
+        </div>
+
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+
+                <li class="list-group-item">
+                    <a  asp-action="Index" class="text-decoration-none">
+                        ✔ Manage Employees
+                    </a>
+                </li>
+
+                <li class="list-group-item">
+                    <a asp-action="Edit" class="text-decoration-none">
+                    ✔ Edit Details
+                    </a>
+                </li>
+
+                <li class="list-group-item">
+                    <a asp-controller="Employee" 
+                    asp-action="Index"
+                       asp-fragment="searchBox"
+                    class="text-decoration-none">
+                    ✔ Search Employees
+                    </a>
+                </li>
+
+                <li class="list-group-item">
+                    <a asp-action="Index" class="text-decoration-none">
+                    ✔ Perform CRUD Operations
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+</div>
