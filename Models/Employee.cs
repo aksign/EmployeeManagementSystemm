@@ -1,9 +1,10 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-
 namespace EmployeeManagementSystemm.Models
 {
+    [Index(nameof(EmployeeCode), IsUnique = true)]
     public class Employee
     {
         [Required]

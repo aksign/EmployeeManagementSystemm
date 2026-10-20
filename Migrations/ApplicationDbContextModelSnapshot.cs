@@ -49,7 +49,7 @@ namespace EmployeeManagementSystemm.Migrations
 
                     b.Property<string>("EmployeeCode")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("EmployeeName")
                         .IsRequired()
@@ -70,6 +70,9 @@ namespace EmployeeManagementSystemm.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("EmployeeId");
+
+                    b.HasIndex("EmployeeCode")
+                        .IsUnique();
 
                     b.ToTable("Employees");
                 });
